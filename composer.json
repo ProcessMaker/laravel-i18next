@@ -1,0 +1,26 @@
+{
+    "name": "processmaker/laravel-i18next",
+    "description": "Provides routes to provide i18next with translation data provided by laravel localization.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Taylor Dondich",
+            "email": "taylor@processmaker.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ProcessMaker\\i18next\\": "src"
+        },
+        "files": ["src/helpers.php"]
+    },
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ProcessMaker\\i18next\\ServiceProvider"
+            ]
+        }
+    }
+}
