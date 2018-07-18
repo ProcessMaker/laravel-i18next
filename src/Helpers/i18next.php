@@ -33,11 +33,7 @@ class i18Next
             }
         }
 
-        if ($flatten) {
-            $i18nTranslations = $this->flatten($i18nTranslations);
-        }
-
-        return $i18nTranslations;
+        return !$flatten ? $i18nTranslations : $this->flatten($i18nTranslations);
     }
 
     private function flatten($translations)
