@@ -53,10 +53,16 @@ class FetchController extends BaseController
 
             // Now fetch all groups for the namespace
             $groups = $this->files->files(sprintf('%s/%s/', $namespaces[$namespace], $lang));
+            $excludeGroups = config('i18next.exclude.groups');
 
             // This is namespaced, let's fetch the namespace
             foreach($groups as $group) {
                 $group = basename($group, '.php');
+
+                if (in_array($group, $excludeGroups)) {
+                    continue;
+                }
+
                 $groupData = $this->translationLoader->load($lang, $group, $namespace);
 
                 foreach($groupData as $key => $val) {

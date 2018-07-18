@@ -10,11 +10,11 @@ class i18nextTest extends TestCase
     /**
      * @dataProvider laravelToI18nextDataProvider
      */
-    public function testLaravelToI18next($translation, $expected)
+    public function testLaravelToI18next($translation, $expected, $flatten)
     {
         $i18next = new i18Next();
 
-        $transformed = $i18next->laravelToI18next($translation);
+        $transformed = $i18next->laravelToI18next($translation, $flatten);
 
         $this->assertEquals($expected, $transformed);
     }
@@ -30,6 +30,7 @@ class i18nextTest extends TestCase
                 [
                     "my.translation.key" => "This is a {{test}}"
                 ],
+                false,
             ],
             // Test transforming keys and values
             [
@@ -39,6 +40,7 @@ class i18nextTest extends TestCase
                 [
                     "My {{translation}} key" => "My translation {{value}}",
                 ],
+                false,
             ],
             // Test transforming a multidimensional
             [
@@ -52,6 +54,7 @@ class i18nextTest extends TestCase
                         "key" => "{{value}}",
                     ],
                 ],
+                false,
             ],
             // Test transforming a multidimensional with keys
             [
@@ -65,6 +68,19 @@ class i18nextTest extends TestCase
                         "key" => "{{value}}",
                     ],
                 ],
+                false,
+            ],
+            // Test transforming a multidimensional array and flattening it
+            [
+                [
+                    "my" => [
+                        "key" => ":value",
+                    ],
+                ],
+                [
+                    "my.key" => "{{value}}",
+                ],
+                true,
             ],
         ];
     }

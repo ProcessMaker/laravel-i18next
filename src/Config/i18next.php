@@ -2,4 +2,7 @@
 
 return [
     'flatten' => false,
+    'exclude' => [
+        'groups' => [],
+    ]
 ];
