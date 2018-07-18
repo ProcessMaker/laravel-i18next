@@ -65,6 +65,6 @@ class FetchController extends BaseController
             }
         }
 
-        return $this->i18next->laravelToI18next($translations);
+        return $this->i18next->laravelToI18next($translations, config('i18next.flatten'));
     }
 }
