@@ -3,16 +3,13 @@
 /**
  * Get a collection of i18next namespaces that match 
  * our laravel translation namespaces.
+ * 
+ * @param boolean $asJson
  */
-function i18next_namespaces($json = true)
+function i18next_namespaces($asJson = true)
 {
     $translationLoader = app()['translation.loader'];
-    $namespaces = ['_default'];
-    $namespaces = array_merge($namespaces, array_keys($translationLoader->namespaces())); 
+    $namespaces = array_merge(['_default'], array_keys($translationLoader->namespaces())); 
     
-    if(!$json) {
-        return $contexts;
-    }
-    return json_encode($namespaces);
-
+    return $asJson ? json_encode($namespaces) : $namespaces;
 }
